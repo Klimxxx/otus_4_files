@@ -1,16 +1,28 @@
-# This is a sample Python script.
+import csv
+import os
+import json
+import pprint
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+project_directory = os.getcwd()
+csv_file_path = 'data/books.csv'
+json_file_path = 'data/users.json'
+
+absolute_path_csv = os.path.join(project_directory, csv_file_path)
+absolute_path_json = os.path.join(project_directory, csv_file_path)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+
+with open(absolute_path_csv, 'r', newline='', encoding='utf-8') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    print(type(csv_reader))
+    for row in csv_reader:
+        print(row)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+with open(json_file_path, 'r', encoding='utf-8') as json_file:
+    # Загружаем данные из файла
+    data = json.load(json_file)
+
+    # Теперь переменная 'data' содержит данные из файла JSON
+    pprint.pprint(data)
